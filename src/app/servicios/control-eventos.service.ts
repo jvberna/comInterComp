@@ -8,8 +8,9 @@ export class ControlEventosService {
   eventEmitterFunction = new EventEmitter();
   constructor() { }
 
-  // Con esta funcion se puede emitir un evento con mensaje que se quiera
-  emitir(mensaje:string) {
-    this.eventEmitterFunction.emit(mensaje);
+  // Con esta funcion en un string el mensaje y el destinatario
+  emitir(mensaje:string, destinatario:string) {
+    const data = { mensaje, destinatario};
+    this.eventEmitterFunction.emit(JSON.stringify(data));
   }
 }

@@ -1,4 +1,7 @@
-<p>padre works! </p>
-<button (click)="emitir('hola desde el padre')">Emitir</button>
+<div style="border: 1;border-color: black;border-style: solid; padding: 5px; margin: 5px;">
+    <p>Soy {{soy}}</p>
+    <button *ngFor="let componente of componentes" (click)="emitir('Mensaje desde '+soy+' a '+componente,componente)">Enviar a {{componente}}</button>
+    <div>Ultimo mensaje: {{ultimoMensaje}}</div>
+</div>
 <app-hijonivel11></app-hijonivel11>
 <app-hijonivel12></app-hijonivel12>

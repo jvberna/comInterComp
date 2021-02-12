@@ -8,18 +8,27 @@ import { ControlEventosService } from '../servicios/control-eventos.service';
 })
 export class PadreComponent implements OnInit {
 
+  soy = 'padre';
+  componentes = ['hijo1','hijo2','padre'];
+  ultimoMensaje = '';
+
   constructor( private controlEventosService:ControlEventosService ) { }
 
   ngOnInit(): void {
     this.controlEventosService.eventEmitterFunction.subscribe(
       res=> {
-        console.log('Soy Padre y he recibido: '+res);
+        const obj = JSON.parse(res);
+        if (obj.destinatario === this.soy)
+        {
+          console.log('Soy '+this.soy+' y he recibo: '+obj.mensaje);
+          this.ultimoMensaje = obj.mensaje;
+        }
       }
     )
   }
 
-  emitir(mensaje:string){
-    this.controlEventosService.emitir(mensaje);
+  emitir(mensaje:string, destinatario: string){
+    this.controlEventosService.emitir(mensaje, destinatario);
   }
 
 }
